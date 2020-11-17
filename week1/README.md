@@ -21,6 +21,7 @@ Java Live Study
  * JVM은 OS가 ByteCode를 이해할 수 있도록 해석해 주는 역할을 한다.
 
  * image
+ 
     <img src="https://user-images.githubusercontent.com/74294325/99254812-4bdceb80-2856-11eb-8bcd-e199ac3831d1.JPG" width="500" height="300">
 
     >출처 (https://velog.io/@hono2030/JVM%EC%9D%98-%EA%B5%AC%EC%A1%B0)
@@ -76,7 +77,7 @@ Java Live Study
 
 * 실행을 할 때 src코드가 아닌 Bytecode를 java.exe로 실행시킨다.
 
-* **os에 종속되지 않고 JVM만 있다면 실행할 수 있다.
+* **os에 종속되지 않고 JVM만 있다면 실행할 수 있다.**
 
 ---
 
