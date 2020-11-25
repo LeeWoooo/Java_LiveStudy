@@ -27,11 +27,11 @@ Java Live Study
     * 산술 연산자의 종류 (5가지)
         연산자 | 기능
         :---: | :---:
-        * | 곱셈
-        / | 나눗셈
-        % | 나머지
-        + | 덧셈
-        - | 뺄셈
+        | * | 곱셈
+        | / | 나눗셈
+        | % | 나머지
+        | + | 덧셈
+        | - | 뺄셈
 
         
     * 피 연산자의 타입이 서로 다르면 연산전에 형 변환으로 타입을 일치 시켜야 한다.<br>
@@ -146,7 +146,7 @@ Java Live Study
 
     * 논리연산자의 연산 순서
         
-        * 만약 && 연산을 사용하여 연산을 처리할 때 전항의 값이 false라면 JVM은 후항을 건너 뛰고 false값 반환
+    	* 만약 && 연산을 사용하여 연산을 처리할 때 전항의 값이 false라면 JVM은 후항을 건너 뛰고 false값 반환
 
         * 만약 || 연산을 사용하여 연산을 처리할 떄 전항의 값이 true라면 JVM은 후항을 건너 뛰고 true값 반환
 
@@ -240,26 +240,10 @@ Java Live Study
 * (optional) Java 13. switch operator
 
 * 참조 =https://docs.oracle.com/en/java/javase/13/language/switch-expressions.html  
+* 기존의 switch 구문에 expression을 추가하였다. 
 
-* 기존의 switch 구문에 expression을 추가하였다.  
-
-    ```java
-    switch(expression){
-	    case expression -> expression;
-	    ...
-	    default -> expression
-    };
-
-    switch(expression){
-	    case expression:
-		    expression;
-		    yield expression;
-	    ...
-	    default:
-		    expression;
-		    yield expression;
-    };
-    ```
 * 기존의 switch문의 `case: `대신 `case ->`가 사용 가능하다.  
+
 * break문 대신 yield 구문을 사용한다.
+
 * 다중의 구문을 적용하거나, throw 구문을 사용할 때, expression이 아닌 경우에는 중괄호로 감싸야한다.  
