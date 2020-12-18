@@ -101,13 +101,13 @@ Java Live Study
 }
 ```
 
-* 생성자의 접근지정자
+    생성자의 접근지정자
 
-    * public : class외부에서 객체 생성가능
-    * protecte : 같은 package의 다른class에서 생성가능<br>
-    (다른 package의 상속관계에 있는 class에서 생성가능)
-    * private : class안에서만 객체 생성가능 
-    * default : 같은 package내에서만 생성 가능.
+    1. public : class외부에서 객체 생성가능
+    2. protecte : 같은 package의 다른class에서 생성가능<br>
+                (다른 package의 상속관계에 있는 class에서 생성가능)
+    3. private : class안에서만 객체 생성가능 
+    4.  default : 같은 package내에서만 생성 가능.
 
 <br>
 
@@ -201,16 +201,16 @@ this. method명();//생성된 객체의 instance method를 호출할 때
 }
 ```
 
-* method의 접근지정자
+    method의 접근지정자
 
-    * public : class외부에서 호출가능
-    * protected : 같은 package,다른 package에서 상속관계에 있는 class
-    * private : class안에서만 호출가능
-    * default : 같은 package에서만
+    1. public : class외부에서 호출가능
+    2. protected : 같은 package,다른 package에서 상속관계에 있는 class
+    3. private : class안에서만 호출가능
+    4. default : 같은 package에서만
 
-    * static : static method를 생성할 때
-    * final : Override를 막을 때
-    * synchronized : multi thread에서 동시 호출을 막을 때
+    1. static : static method를 생성할 때
+    2. final : Override를 막을 때
+    3. synchronized : multi thread에서 동시 호출을 막을 때
 
 ### 반환형
 
