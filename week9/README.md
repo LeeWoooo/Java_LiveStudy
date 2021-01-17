@@ -298,3 +298,101 @@ public class CustomException extends Exception {
 
 }
 ```
+
+## Java_Live Study를 듣고 새로 공부하게 된 내용.
+
+1. 커스텀한 예외는 먼저 자바가 기본적으로 제공하는 예외를 사용해도 처리 할 수 없을 때 만드는 것이 기본적이며 Runtime Exception을 잘 알고 있어야 한다.
+
+<br>
+
+2. try-with-resources
+
+try-with-resources는 하나 이상의 리소스를 정의하는 try와 관련된 문법이다. 리소스는 프로그램이 끝내기 전에 반드시 종료되어야 하는 객체를 의마한다. <br>
+
+try-with-resources문은 마지막에 리소스를 닫도록 해준다. **try-with-resources를 사용할 수 있는 리소스는 java.lang.AutoCloseable, java.io.closeable을 구현해야 사용할 수 있다.**
+<br>
+
+JDBC로 DB와 연결할 때를 예로 들어보면 DB와 연결할 때 사용하는 Connection과 Statement의 종류들은 반드시 사용 후 종료해야 하는 리소스 들이다. <br>
+
+이들 또한 자바 API를 확인해 보면 AutoCloseable을 구현하고 있다. 이전 try-with-resources를 사용하지 않았을 때의 내가 사용하던 코드이다.
+
+<br>
+
+```java
+public int insert() throws SQLException{
+    
+    try{
+    Class.forName("oracle.jdbc.OracleDriver");
+    }catch(ClassNotFoundException e){
+        e.printStackTrace();
+    }
+
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String id = "scott";
+    String pwd = "tiger";
+
+    Connection con = null;
+    PreparedStatement pstmt = null;
+
+    try{
+        con = DriverManager.getConnection(url,id,pwd);
+        String sql = "INSERT INTO EMP (EMPNO, ENAME) VALUES (? , ?)";
+
+        pstmt = con.PreparedStatement(sql);
+
+        pstmt.setString(1,10);
+        pstmt.setString(2,Lee);
+
+        pstmt.executeUpdate();
+    }finally{
+        if(pstmt!=null){
+            pstmt.close();
+        }
+        if(con!=null){
+            con.close();
+        }
+    }
+}   
+```
+<br>
+
+JDK 1.7 이후 부터는 try-with-resources문을 적용하여 작성하면 finally에서 닫지 않아도 try문에서 사용한 리소스 들을 종료 시점에서 닫아준다. <br>
+
+**주의해야할 점은 try-with-resources에서 선언한 순서 역순으로 리소스가 닫힌다.(선언을 con,pstmt 순으로 했다면 닫히는 순서는 pstmt,con순이다.)** <br>
+
+한번 적용해보자.
+
+<br>
+
+```java
+public int insert() throws SQLException{
+    
+    try{
+    Class.forName("oracle.jdbc.OracleDriver");
+    }catch(ClassNotFoundException e){
+        e.printStackTrace();
+    }
+
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String id = "scott";
+    String pwd = "tiger";
+
+    String sql = "INSERT INTO EMP (EMPNO, ENAME) VALUES (? , ?)";
+
+    try(con = DriverManager.getConnection(url,id,pwd);
+        pstmt = con.PreparedStatement(sql)){
+
+        pstmt.setString(1,10);
+        pstmt.setString(2,Lee);
+        pstmt.executeUpdate();
+    }
+}
+  
+```
+
+<br>
+
+이 처럼 try()안에 AutoCloseable를 구현한 객체를 할당해 주면 try~catch()절이 종료될 때 객체의 close()가 자동으로 호출 된다.
+
+
+
